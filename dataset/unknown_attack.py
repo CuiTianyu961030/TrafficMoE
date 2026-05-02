@@ -1,9 +1,9 @@
 import os
 import json
 
-data_path = "/mnt/data/TrafficMoE/route_data/recon-iot-2023/RP/train.jsonl"
-label_path = "/mnt/data/TrafficMoE/route_data/recon-iot-2023/RP/label.jsonl"
-save_path = "/mnt/data/TrafficMoE/route_data/unknown_recon/"
+data_path = "/mnt/data/route_data/recon-iot-2023/RP/train.jsonl"
+label_path = "/mnt/data/route_data/recon-iot-2023/RP/label.jsonl"
+save_path = "/mnt/data/route_data/unknown_recon/"
 
 
 def build_data():

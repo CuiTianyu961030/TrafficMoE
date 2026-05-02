@@ -69,9 +69,9 @@ def evaluation(predict_responses, target_responses, label_dict):
 
 
 def load_model(path):
-    lora_path = "/mnt/data/cty/works/mistral-finetune/run_dir/" + path + "/checkpoints/checkpoint_000200/consolidated/lora.safetensors"
+    lora_path = "/mnt/data/run_dir/" + path + "/checkpoints/checkpoint_000200/consolidated/lora.safetensors"
 
-    model = Transformer.from_folder("/mnt/data/cty/models/mistral/7B/")  # change to extracted model dir
+    model = Transformer.from_folder("/mnt/data/models/mistral/7B/")  # change to extracted model dir
     model.load_lora(lora_path)
 
     return model
@@ -94,7 +94,7 @@ def route_result(moe_result, sorted_perplexity):
 
 def model_classifier(prompts, targets, label_dict):
     tokenizer = MistralTokenizer.from_file(
-        "/mnt/data/cty/models/mistral/7B/tokenizer.model.v3")  # change to extracted tokenizer file
+        "/mnt/data/models/mistral/7B/tokenizer.model.v3")  # change to extracted tokenizer file
 
     predict_responses = []
     target_responses = targets[0]
@@ -142,7 +142,7 @@ def model_classifier(prompts, targets, label_dict):
 
 
 def model_classifier_test():
-    path = "/mnt/data/cty/works/mistral-finetune/route_data/" + dataset_name
+    path = "/mnt/data/route_data/" + dataset_name
     test_files = [os.path.join(path, os.path.join(i, "test.jsonl")) for i in ["PLS", "PDS", "PAI", "FS", "BF", "PH", "RP"]]
     label_file = os.path.join(path, "PLS/label.jsonl")
 
