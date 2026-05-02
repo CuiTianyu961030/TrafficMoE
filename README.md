@@ -25,10 +25,6 @@ This repository contains the official implementation of **TrafficMoE**, **a perp
 Please clone the repo and install the required environment by runing the following commands.
 
 ```bash
-# Clone the repository
-git clone https://github.com/***/TrafficMoE.git
-cd TrafficMoE
-
 # Create a virtual environment
 conda create -n trafficmoe python=3.10
 conda activate trafficmoe
@@ -39,22 +35,50 @@ pip install -r requirements.txt
 
 ## Quick Start
 
+### 1. Flow Preprocess
+
+```bash
+python preprocess/preprocess_dataset.py --input /Your/Raw/Dataset/Path/CIC-IOT-2023/DDoS/ --feature PLS --output_path route_data/ddos-iot-2023
+```
+
+### 2. Training
+
+```bash
+
+```
+
+### 3. Inference & Evaluation
+
+```bash
+```
 
 ---
 
 ## Datasets
 
+### Pre-train Datasets
+
+
+
+### Benchmark Datasets
+
 TrafficMoE is evaluated on the following public benchmark datasets:
 
 | Dataset | Description |
 |---------|-------------|
-| [CIC-IDS2017](https://www.unb.ca/cic/datasets/ids-2017.html) | Common intrusion detection benchmark |
-| [CIC-IOT](https://www.unb.ca/cic/datasets/iotdataset-2022.html) | IoT traffic with attack scenarios |
-| [USTC-TFC](https://github.com/yungshenglu/USTC-TFC2016) | Encrypted traffic classification |
-| [ISCX-Botnet](https://www.unb.ca/cic/datasets/botnet.html) | Botnet traffic detection |
-| [DAPT2020](https://github.com/DAPT2020) | Advanced persistent threat dataset |
+| CIC-IOT datasets | Real-world IoT device traffic and various novel attacks |
+| CIC-IDS datasets | Common intrusion detection benchmark with many classic attacks  |
+| USTC-TFC datasets | Encrypted and plain-text malware traffic to build application-specific attacks |
+| ISCX-Botnet datasets  | Various botnet families to conduct attacks with C2 channels |
+| DAPT datasets | Sophisticated multi-stage attacks to form ad- vanced persistent threats |
 
 Preprocessed versions of all datasets used in our experiments are provided in the repository.
+
+### Evasion Attacks
+
+
+
+### Unknown Attacks
 
 
 ## Repository Structure
