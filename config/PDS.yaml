@@ -1,0 +1,36 @@
+# data
+data:
+  instruct_data: "/mnt/data/route_data/ustc-tfc-2016/PDS/train.jsonl"  # Fill
+  data: "/mnt/data/pretrain/PDS/pretrain.jsonl"  # Optionally fill with pretraining data 
+  eval_instruct_data: "/mnt/data/route_data/ustc-tfc-2016/PDS/test.jsonl"  # Optionally fill
+
+# model
+model_id_or_path: "/mnt/data/models/mistral/7B/"  # Change to downloaded path
+lora:
+  rank: 64
+
+# optim
+seq_len: 32768
+batch_size: 1
+max_steps: 200
+optim:
+  lr: 6.e-5
+  weight_decay: 0.1
+  pct_start: 0.05
+
+# other
+seed: 0
+log_freq: 1
+eval_freq: 100
+no_eval: False
+ckpt_freq: 100
+
+save_adapters: True  # save only trained LoRA adapters. Set to `False` to merge LoRA adapter into the base model and save full fine-tuned model
+
+run_dir: "/mnt/data/run_dir/ustc-tfc-2016/PDS_route"  # Fill
+
+wandb:
+  project: "ustc-tfc-2016-PDS-route" # your wandb project name
+  run_name: "" # your wandb run name
+  key: "" # your wandb api key
+  offline: False
