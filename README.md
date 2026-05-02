@@ -8,7 +8,7 @@
 This repository contains the official implementation of **TrafficMoE**, **a perplexity-guided Mixture-of-Experts (MoE) framework for feature-agnostic network intrusion detection**. Unlike existing ML-based NIDS that rely on fixed, task-specific feature spaces and degrade significantly under evasion attacks and zero-day threats, TrafficMoE dynamically routes each network flow to the most suitable experts based on model perplexity, enabling robust detection across diverse real-world traffic conditions.
 
 <p align="center">
-  <img src="images/overview.png" width="800" alt="TrafficMoE Overview"/>
+  <img src="images/overview.png" width="1000" alt="TrafficMoE Overview"/>
 </p>
 
 
