@@ -26,7 +26,7 @@ Please clone the repo and install the required environment by runing the followi
 
 ```bash
 # Clone the repository
-git clone https://github.com/***/TrafficMoE.git
+git clone https://github.com//TrafficMoE.git
 cd TrafficMoE
 
 # Create a virtual environment
