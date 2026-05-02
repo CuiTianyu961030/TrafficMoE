@@ -58,7 +58,13 @@ python preprocess/preprocess_dataset.py --input /Your/Raw/Dataset/Path/CIC-IOT-2
 
 ### Pre-train Datasets
 
+TrafficMoE is pre-trained by using 420 million large-scale unlabeled traffic flows from the open-sourced WIDE MAWI datasets.
 
+| Dataset | Description |
+|---------|-------------|
+| WIDE MAWI datasets | Real-world backbone network traffic datasets built by the WIDE MAWI project |
+
+We provide the examples of the pretrain data in `dataset/pretrain_data`.
 
 ### Benchmark Datasets
 
@@ -70,7 +76,7 @@ TrafficMoE is evaluated on the following public benchmark datasets:
 | CIC-IDS datasets | Common intrusion detection benchmark with many classic attacks  |
 | USTC-TFC datasets | Encrypted and plain-text malware traffic to build application-specific attacks |
 | ISCX-Botnet datasets  | Various botnet families to conduct attacks with C2 channels |
-| DAPT datasets | Sophisticated multi-stage attacks to form ad- vanced persistent threats |
+| DAPT datasets | Sophisticated multi-stage attacks to form advanced persistent threats |
 
 Preprocessed versions of all datasets used in our experiments are provided in the repository.
 
@@ -85,21 +91,52 @@ Preprocessed versions of all datasets used in our experiments are provided in th
 
 ```
 TrafficMoE/
-├── checkpoints/          # Pre-trained expert model weights
-├── data/                 # Sample data and preprocessed datasets
-├── figures/              # Paper figures
-├── models/
-│   ├── experts/          # Seven expert network implementations
-│   ├── router.py         # Perplexity-guided routing module
-│   └── aggregator.py     # Perplexity-weighted prediction aggregation
-├── pipeline/
-│   ├── flow_recorder.py  # DPDK-based flow recording module
-│   └── async_pipeline.py # Asynchronous inference pipeline
-├── scripts/              # Training and evaluation scripts
-├── evaluate.py           # Evaluation entry point
-├── detect.py             # Inference entry point
-├── train.py              # Training entry point
-└── requirements.txt
+.
+├── README.md
+├── config
+│   └── 7B.yaml
+├── dataset
+│   ├── pretrain_data
+│   └── route_data
+├── finetune
+│   ├── __init__.py
+│   ├── args.py
+│   ├── checkpointing.py
+│   ├── data
+│   │   ├── __init__.py
+│   │   ├── args.py
+│   │   ├── data_loader.py
+│   │   ├── dataset.py
+│   │   ├── exceptions.py
+│   │   └── tokenize.py
+│   ├── distributed.py
+│   ├── eval.py
+│   ├── loss.py
+│   ├── mixed_precision.py
+│   ├── monitoring
+│   │   ├── __init__.py
+│   │   ├── metrics_logger.py
+│   │   └── utils.py
+│   ├── utils.py
+│   └── wrapped_model.py
+├── images
+├── model
+│   ├── __init__.py
+│   ├── args.py
+│   ├── lora.py
+│   ├── moe.py
+│   ├── rope.py
+│   └── transformer.py
+├── preprocess
+│   ├── flow_data_preprocess.py
+│   ├── packet_data_preprocess.py
+│   ├── preprocess_dataset.py
+│   ├── preprocess_pretrain_data.py
+│   └── preprocess_utils.py
+├── requirements.txt
+├── train.py
+├── inference.py
+└── utils
 ```
 
 ---
