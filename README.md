@@ -37,3 +37,45 @@ conda activate trafficmoe
 pip install -r requirements.txt
 ```
 
+## Quick Start
+
+
+---
+
+## Datasets
+
+TrafficMoE is evaluated on the following public benchmark datasets:
+
+| Dataset | Description |
+|---------|-------------|
+| [CIC-IDS2017](https://www.unb.ca/cic/datasets/ids-2017.html) | Common intrusion detection benchmark |
+| [CIC-IOT](https://www.unb.ca/cic/datasets/iotdataset-2022.html) | IoT traffic with attack scenarios |
+| [USTC-TFC](https://github.com/yungshenglu/USTC-TFC2016) | Encrypted traffic classification |
+| [ISCX-Botnet](https://www.unb.ca/cic/datasets/botnet.html) | Botnet traffic detection |
+| [DAPT2020](https://github.com/DAPT2020) | Advanced persistent threat dataset |
+
+Preprocessed versions of all datasets used in our experiments are provided in the repository.
+
+
+## Repository Structure
+
+```
+TrafficMoE/
+├── checkpoints/          # Pre-trained expert model weights
+├── data/                 # Sample data and preprocessed datasets
+├── figures/              # Paper figures
+├── models/
+│   ├── experts/          # Seven expert network implementations
+│   ├── router.py         # Perplexity-guided routing module
+│   └── aggregator.py     # Perplexity-weighted prediction aggregation
+├── pipeline/
+│   ├── flow_recorder.py  # DPDK-based flow recording module
+│   └── async_pipeline.py # Asynchronous inference pipeline
+├── scripts/              # Training and evaluation scripts
+├── evaluate.py           # Evaluation entry point
+├── detect.py             # Inference entry point
+├── train.py              # Training entry point
+└── requirements.txt
+```
+
+---
