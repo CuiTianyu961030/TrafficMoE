@@ -70,7 +70,7 @@ You can also use the bash script `scripts/train.sh` to train all experts in Traf
 
 ### 3. Inference & Evaluation
 
-Run the inference script on the specified benchmark datasets and calculate the overall performance.
+Run the inference script to realize dynamic flow routing on benchmark datasets and evalute the overall performance.
 
 ```bash
 python inference.py
@@ -138,11 +138,10 @@ python dataset/unknown_attack.py
 
 ```bash
 ├── config  # Configs of hyper-parameters for training
-│   └── 7B.yaml
-├── dataset
-│   ├── pretrain_data
-│   └── route_data
-├── finetune
+├── dataset  # Preprocessed datasets for training TrafficMoE
+│   ├── pretrain_data  # Examples of preprocessed pre-training datasets
+│   └── route_data  # Benchmark datasets
+├── finetune  # Dataloader and loss calculating
 │   ├── __init__.py
 │   ├── args.py
 │   ├── checkpointing.py
@@ -164,14 +163,14 @@ python dataset/unknown_attack.py
 │   ├── utils.py
 │   └── wrapped_model.py
 ├── images
-├── model
+├── model  # Main architecture of the model
 │   ├── __init__.py
 │   ├── args.py
 │   ├── lora.py
 │   ├── moe.py
 │   ├── rope.py
 │   └── transformer.py
-├── preprocess
+├── preprocess  # Scripts for preprocessing raw traffic datasets
 │   ├── flow_data_preprocess.py
 │   ├── packet_data_preprocess.py
 │   ├── preprocess_dataset.py
@@ -179,8 +178,8 @@ python dataset/unknown_attack.py
 │   └── preprocess_utils.py
 ├── README.md
 ├── requirements.txt
-├── train.py
-├── inference.py
+├── train.py  # Scripts for model training 
+├── inference.py  # Scripts for flow routing with model perplexity
 └── utils
 ```
 
