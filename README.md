@@ -52,7 +52,7 @@ python preprocess/preprocess_dataset.py --input /Your/Raw/Dataset/Path/CIC-IOT-2
 - **Input**: specify the raw traffic dataset and the type of `feature` for mixtures of expert learning.
 - **Output**: the preprocessed datasets for training an expert in TrafficMoE.
 
-You can also use the bash script `scripts/preprocessing.sh` to extract preprocessed datasets for all seven experts.
+You can also use the bash script `scripts/preprocessing.sh` to preprocess datasets for all seven experts.
 
 ### 2. Training
 
@@ -75,8 +75,8 @@ Run the inference script on the specified benchmark datasets and calculate the o
 ```bash
 python inference.py
 ```
-- **Input**: the benchmark dataset name and the model weights of TrafficMoE.
-- **Output**: the prediction results of each flow and the overall performance with Acc, precision, recall and F1 metric.
+- **Input**: the benchmark dataset name and the model path of TrafficMoE.
+- **Output**: the prediction results of flows and the overall performance with Acc, precision, recall and F1 metric.
 
 ---
 
@@ -119,20 +119,25 @@ We provide 4 evasion methods to reshape the attack traffic mentioned above, cons
 
 The script of building evasion attacks is `dataset/evasion_attack.py`. Using the following command to generate evasion attack traffic: 
 ```bash
-python evasion_attack.py
+python dataset/evasion_attack.py
 ```
 - **Input**: load the existing attack datatsets with .pcap format and specify the type of the evasion method in `evasion_attack`.
 - **Output**: output the evasion traffic of the input datasets by using the specified evasion method.
 
 ### Unknown Attacks
 
-
+We provide the script of building unknown attack detection settings in `dataset/unknown_attack.py`.
+```bash
+python dataset/unknown_attack.py
+```
+- **Input**: the preprocessed datasets with different types of attacks.
+- **Output**: the train and test datasets, each containing one different type of attack for evaluation under unknown attack settings.
 
 
 ## Repository Structure
 
 ```bash
-├── config
+├── config  # Configs of hyper-parameters for training
 │   └── 7B.yaml
 ├── dataset
 │   ├── pretrain_data
