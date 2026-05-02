@@ -6,9 +6,9 @@ import numpy as np
 import os
 
 
-MAX_PACKET_NUMBER = 300  # 10
+MAX_PACKET_NUMBER = 300 
 MAX_PACKET_LENGTH_IN_FLOW = 256
-HEX_PACKET_START_INDEX = 76  # 48 # 76
+HEX_PACKET_START_INDEX = 76 
 
 
 class FlowRecord:
@@ -59,11 +59,6 @@ def normalization_src_dst(src, sport, dst, dport):
 def build_flow_data(pcap_file, flow_feature="PLS"):
 
     build_data = []
-    # flows = extract(pcap_file,
-    #                 filter='tcp or udp',
-    #                 extension=["tcp.payload", "udp.payload"],
-    #                 split_flag=False,
-    #                 verbose=True)
 
     # Packet Length Sequences(PLS) features for flow-level detection
     if flow_feature == "PLS":
@@ -93,18 +88,6 @@ def build_flow_data(pcap_file, flow_feature="PLS"):
             flow_data = ", ".join(flows[flow_tuple]["bytes"])
             build_data.append(flow_data)
 
-        # for key, flow in flows.items():
-        #     flow_seq = []
-        #
-        #     length_seq = flow.lengths
-        #     for i, packet_length in enumerate(length_seq):
-        #         if i >= MAX_PACKET_NUMBER:
-        #             break
-        #         flow_seq.append(str(abs(packet_length)))
-        #
-        #     flow_data = ", ".join(flow_seq)
-        #     build_data.append(flow_data)
-
     # Packet Direction Sequences(PDS) features for flow-level detection
     elif flow_feature == "PDS":
         packets = scapy.rdpcap(pcap_file)
@@ -132,19 +115,6 @@ def build_flow_data(pcap_file, flow_feature="PLS"):
         for flow_tuple in flows.keys():
             flow_data = ", ".join(flows[flow_tuple]["direction"])
             build_data.append(flow_data)
-
-
-        # for key, flow in flows.items():
-        #     flow_seq = []
-        #
-        #     length_seq = flow.lengths
-        #     for i, packet_length in enumerate(length_seq):
-        #         if i >= MAX_PACKET_NUMBER:
-        #             break
-        #         flow_seq.append("1" if packet_length > 0 else "-1")
-        #
-        #     flow_data = ", ".join(flow_seq)
-        #     build_data.append(flow_data)
 
     # Packet Arrival Interval(PAI) features for flow-level detection
     elif flow_feature == "PAI":
@@ -180,17 +150,6 @@ def build_flow_data(pcap_file, flow_feature="PLS"):
                 flow_seq.append(str((time_seq[i + 1] - time_seq[i]) * 1000))
             flow_data = ", ".join(flow_seq)
             build_data.append(flow_data)
-
-        # for key, flow in flows.items():
-        #     flow_seq = []
-        #     time_seq = flow.timestamps
-        #     for i, arrival_time in enumerate(time_seq):
-        #         if i >= min(MAX_PACKET_NUMBER, len(time_seq) - 1):
-        #             break
-        #         flow_seq.append(str((time_seq[i + 1] - time_seq[i]) * 1000))
-        #
-        #     flow_data = ", ".join(flow_seq)
-        #     build_data.append(flow_data)
 
     # Flow Statistics(FS) features for flow-level detection
     elif flow_feature == "FS":
@@ -273,31 +232,7 @@ def build_flow_data(pcap_file, flow_feature="PLS"):
                  counts["packet_speed"], counts["byte_speed"]))
 
         for flow_record in flow_records:
-            # build_data.append("src_ip: " + str(flow_record.src_ip) +
-            #                ", dst_ip: " + str(flow_record.dst_ip) +
-            #                ", src_port: " + str(flow_record.src_port) +
-            #                ", dst_port: " + str(flow_record.dst_port) +
-            #                ", proto: " + str(flow_record.proto) +
-            #                ", n_packet: " + str(flow_record.n_packet) +
-            #                ", n_up_packet: " + str(flow_record.n_up_packet) +
-            #                ", n_down_packet: " + str(flow_record.n_down_packet) +
-            #                ", bytes: " + str(flow_record.bytes) +
-            #                ", avg_payload_length: " + str(flow_record.avg_payload_length) +
-            #                ", avg_packet_length: " + str(flow_record.avg_packet_length) +
-            #                ", pre_packet_length: " + str(flow_record.pre_packet_length) +
-            #                ", pre_payload_length: " + str(flow_record.pre_payload_length) +
-            #                ", max_ttl: " + str(flow_record.max_ttl) +
-            #                ", min_ttl: " + str(flow_record.min_ttl) +
-            #                ", avg_ttl: " + str(flow_record.avg_ttl) +
-            #                ", max_window_size: " + str(flow_record.max_window_size) +
-            #                ", min_window_size: " + str(flow_record.min_window_size) +
-            #                ", avg_window_size: " + str(flow_record.avg_window_size) +
-            #                ", duration: " + str(flow_record.duration) +
-            #                ", avg_interval: " + str(flow_record.avg_interval) +
-            #                ", max_interval: " + str(flow_record.max_interval) +
-            #                ", packet_speed: " + str(flow_record.packet_speed) +
-            #                ", byte_speed: " + str(flow_record.byte_speed)
-            # )
+
             build_data.append("n_packet: " + str(flow_record.n_packet) +
                            ", n_up_packet: " + str(flow_record.n_up_packet) +
                            ", n_down_packet: " + str(flow_record.n_down_packet) +
@@ -365,29 +300,6 @@ def build_flow_data(pcap_file, flow_feature="PLS"):
             flow_data = ", ".join(flow_seq)
             build_data.append(flow_data)
 
-
-        # for key, flow in flows.items():
-        #     flow_seq = []
-        #
-        #     length_seq = flow.lengths
-        #     burst_length = 0
-        #     for i, packet_length in enumerate(length_seq):
-        #         if i >= MAX_PACKET_NUMBER:
-        #             break
-        #         if burst_length == 0:
-        #             burst_length += packet_length
-        #             continue
-        #         if (burst_length > 0 and packet_length > 0) or (burst_length < 0 and burst_length < 0):
-        #             burst_length += packet_length
-        #         else:
-        #             flow_seq.append(str(abs(burst_length)))
-        #             burst_length = 0
-        #     if burst_length != 0:
-        #         flow_seq.append(str(abs(burst_length)))
-        #
-        #     flow_data = ", ".join(flow_seq)
-        #     build_data.append(flow_data)
-
     # Raw Packet(RP) features for flow-level detection
     elif flow_feature == "RP":
         build_data = []
@@ -427,27 +339,6 @@ def build_flow_data(pcap_file, flow_feature="PLS"):
 
             flow_data = "<pck>" + "<pck>".join(hex_stream)
             build_data.append(flow_data)
-
-        # flow bytes feature
-        # build_data = []
-        # packets = scapy.rdpcap(pcap_file)
-        #
-        # hex_stream = []
-        # for i, packet in enumerate(packets):
-        #     if i >= MAX_PACKET_NUMBER:
-        #         break
-        #     packet_data = packet.copy()
-        #     data = (binascii.hexlify(bytes(packet_data)))
-        #
-        #     packet_string = data.decode()
-        #
-        #     # byte_list = re.findall(".{2}", packet_string)
-        #     # packet_string = " ".join(byte_list)
-        #
-        #     hex_stream.append(packet_string[HEX_PACKET_START_INDEX:min(len(packet_string), MAX_PACKET_LENGTH_IN_FLOW)])
-        #
-        # flow_data = "<pck>" + "<pck>".join(hex_stream)
-        # build_data.append(flow_data)
 
     # Packet Headers(PH) for flow-level detection
     elif flow_feature == "PH":
@@ -506,11 +397,6 @@ def build_flow_data(pcap_file, flow_feature="PLS"):
                   "tcp.urgent_pointer", "tcp.time_relative", "tcp.time_delta", "tcp.analysis.bytes_in_flight",
                   "tcp.analysis.push_bytes_sent", "tcp.segment", "tcp.segment.count", "tcp.reassembled.length", "tcp.payload",
                   "udp.srcport", "udp.dstport", "udp.length", "udp.checksum", "udp.checksum.status", "udp.stream", "data.len"]
-        # "frame.encap_type", "frame.time", "frame.offset_shift", "frame.time_epoch",
-        #                   "frame.time_delta", "frame.time_relative", "frame.number", "frame.len", "frame.marked", "frame.protocols",
-        #                   "eth.type"
-        # "eth.dst", "eth.dst_resolved", "eth.src", "eth.src_resolved",
-        # "ip.src", "ip.dst", "tcp.srcport", "tcp.dstport"
 
         extract_str = " -e " + " -e ".join(fields) + " "
         cmd = "tshark -r " + pcap_file + extract_str + "-T fields -Y 'tcp or udp' > " + tmp_path

@@ -4,7 +4,7 @@ from tqdm import tqdm
 import json
 import os
 
-input = "/mnt/data/cty/data/traffic_data/pretrain_traffic"
+input = "/mnt/data/traffic_data/pretrain_traffic"
 feature = "PAI"
 output_path = "data/pretrain/"
 

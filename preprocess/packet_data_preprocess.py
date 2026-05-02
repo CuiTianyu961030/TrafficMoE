@@ -9,7 +9,7 @@ import os
 # load_layer("tls")
 
 MAX_PACKET_LENGTH = 1024
-HEX_PACKET_START_INDEX = 0  # 0 # 48 # 76
+HEX_PACKET_START_INDEX = 0 
 
 
 def build_packet_data(pcap_file, packet_feature="PH"):
@@ -61,9 +61,7 @@ def build_packet_data(pcap_file, packet_feature="PH"):
                   "tcp.time_relative", "tcp.time_delta", "tcp.analysis.bytes_in_flight", "tcp.analysis.push_bytes_sent", "tcp.segment",
                   "tcp.segment.count", "tcp.reassembled.length", "tcp.payload", "udp.srcport", "udp.dstport", "udp.length",
                   "udp.checksum", "udp.checksum.status", "udp.stream", "data.len"]
-        # "eth.dst", "eth.dst_resolved", "eth.src", "eth.src_resolved",
-        # "frame.encap_type", "frame.time", "frame.offset_shift", "frame.time_epoch", "frame.time_delta",
-        #                   "frame.time_relative", "frame.number", "frame.len", "frame.marked", "frame.protocols", "eth.type",
+ 
 
         extract_str = " -e " + " -e ".join(fields) + " "
         cmd = "tshark -r " + pcap_file + extract_str + "-T fields -Y 'tcp or udp' > " + tmp_path

@@ -6,7 +6,7 @@ import os
 
 
 MAX_SAMPLING_NUMBER = 5000  # 5000 # number of samples per class
-TRAINING_SAMPLE_RATIO = 0.95
+TRAINING_SAMPLE_RATIO = 0.8
 
 
 def split_dataset(build_data, sampling=True):
