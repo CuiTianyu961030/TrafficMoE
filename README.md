@@ -37,20 +37,46 @@ pip install -r requirements.txt
 
 ### 1. Dataset Preprocessing
 
+Load the raw traffic dataset with the .pcap format to extract preprocessed datasets for model training.
+
+- **Pre-train Dataset Preprocessing**:
+```bash
+python preprocess/preprocess_pretarin_data.py
+
+```
+- **Fine-tune Dataset Preprocessing**:
 ```bash
 python preprocess/preprocess_dataset.py --input /Your/Raw/Dataset/Path/CIC-IOT-2023/DDoS/ --feature PLS --output_path route_data/ddos-iot-2023
 ```
 
+- **Input**: specify the raw traffic dataset and the type of `feature` for mixtures of expert learning.
+- **Output**: the preprocessed datasets for training an expert in TrafficMoE.
+
+You can also use the bash script `scripts/preprocessing.sh` to extract preprocessed datasets for all seven experts.
+
 ### 2. Training
 
-```bash
+Config the training parameters in `config/7B.yaml` and train TrafficMoE by using `torchrun`.
 
+```bash
+python -m utils.validate_data --train_yaml example/7B.yaml
+torchrun --nproc-per-node 8 --master_port $RANDOM -m train example/7B.yaml
 ```
+
+- **Input**: the preprocessed datasets and the base model specified in the config file.
+- **Output**: the model weights of TrafficMoE saved in the `run_dir`.
+
+You can also use the bash script `scripts/train.sh` to train all experts in TrafficMoE directly.
 
 ### 3. Inference & Evaluation
 
+Run the inference script on the specified benchmark datasets and calculate the overall performance.
+
 ```bash
+python inference.py
 ```
+- **Input**: the benchmark dataset name and the model weights of TrafficMoE.
+- **Output**: the prediction results of each flow and the overall performance with Acc, precision, recall and F1 metric.
 
 ---
 
@@ -64,7 +90,7 @@ TrafficMoE is pre-trained by using 420 million large-scale unlabeled traffic flo
 |---------|-------------|
 | WIDE MAWI datasets | Real-world backbone network traffic datasets built by the WIDE MAWI project |
 
-We provide the examples of the pretrain data in `dataset/pretrain_data`.
+We provide the examples of the pre-train data in `dataset/pretrain_data`.
 
 ### Benchmark Datasets
 
@@ -89,14 +115,18 @@ We provide 4 evasion methods to reshape the attack traffic mentioned above, cons
 | FRONT | Attackers inject dummy packets at the front of flows and randomizes the number and distribution of dummy packets |
 | WTF-PAD | Attackers fill up sparse gaps in flows with dummy packets based on the distribution of inter-packet arrival time |
 | DFD | Attackers inject dummy packets within every outgoing burst to break the inherent burst patterns preserved in traffic |
-| TextAttack | attackers utilize the half-byte level of disturbance on raw packet data to generate adversarial samples against pre-trained models |
+| TextAttack | Attackers utilize the half-byte level of disturbance on raw packet data to generate adversarial samples against pre-trained models |
 
-The scripts of building evasion attacks are shown in `dataset/evasion_attack.py`. Using the following command to generate evasion attack traffic: 
+The script of building evasion attacks is `dataset/evasion_attack.py`. Using the following command to generate evasion attack traffic: 
 ```bash
 python evasion_attack.py
 ```
+- **Input**: load the existing attack datatsets with .pcap format and specify the type of the evasion method in `evasion_attack`.
+- **Output**: output the evasion traffic of the input datasets by using the specified evasion method.
 
 ### Unknown Attacks
+
+
 
 
 ## Repository Structure

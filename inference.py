@@ -21,8 +21,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0, 1, 2, 3, 4"
 
-dataset_name = "wtf-pad"
-n_expert = 2
+dataset_name = "mirai-iot-2023"
+n_expert = 3
 is_sample = True
 
 
