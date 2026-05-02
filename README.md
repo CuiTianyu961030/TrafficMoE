@@ -16,9 +16,9 @@ This repository contains the official implementation of **TrafficMoE**, a perple
 
 ## Key Features
 
-- 🔀 **Perplexity-Guided Routing** — Uses model perplexity as a universal signal to dynamically select the most suitable experts for each flow
-- 🧠 **Mixture-of-Experts Architecture** — Seven specialized experts spanning raw traffic, sequence-feature, and statistical-feature views
-- 🛡️ **Feature-Agnostic Detection** — Robust against evasion attacks and previously unseen zero-day threats without relying on fixed feature spaces
+- 🔀 **Perplexity-Guided Routing** — Model perplexity as a universal signal to route experts by capturing subtle deviations between real-world attacks and training knowledge for each flow.
+- 🧠 **Mixture-of-Experts Architecture** — Dynamically activates a subset of seven specialized experts spanning varying views of the general high-dimensional feature space.
+- 🛡️ **Feature-Agnostic Detection** — Robust against diverse existing attacks, evasion attacks, and previously unseen zero-day threats through adaptively selecting the most suitable feature subspaces, outperforming state-of-the-art feature-dependent systems.
 
 ---
 
