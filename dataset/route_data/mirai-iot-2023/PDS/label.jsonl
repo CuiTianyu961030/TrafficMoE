@@ -1,0 +1,6 @@
+{
+    "Mirai-greip_flood": 0,
+    "Mirai-udpplain": 1,
+    "Benign": 2,
+    "Mirai-greeth_flood": 3
+}

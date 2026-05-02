@@ -1,0 +1,8 @@
+{
+    "VulnerabilityScan": 0,
+    "Recon-PingSweep": 1,
+    "Recon-HostDiscovery": 2,
+    "Benign": 3,
+    "Recon-OSScan": 4,
+    "Recon-PortScan": 5
+}

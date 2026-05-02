@@ -1,0 +1,5 @@
+{
+    "DNS_Spoofing": 0,
+    "Benign": 1,
+    "MITM-ArpSpoofing": 2
+}

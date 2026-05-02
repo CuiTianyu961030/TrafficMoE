@@ -1,0 +1,9 @@
+{
+    "CommandInjection": 0,
+    "XSS": 1,
+    "SqlInjection": 2,
+    "BrowserHijacking": 3,
+    "Benign": 4,
+    "Backdoor_Malware": 5,
+    "Uploading_Attack": 6
+}

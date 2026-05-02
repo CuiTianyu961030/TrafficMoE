@@ -1,0 +1,7 @@
+{
+    "Benign": 0,
+    "LateralMovement": 1,
+    "EstablishFoothold": 2,
+    "Reconnaissance": 3,
+    "DataExfiltration": 4
+}

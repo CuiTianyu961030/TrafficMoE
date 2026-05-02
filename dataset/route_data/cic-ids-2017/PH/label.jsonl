@@ -1,0 +1,17 @@
+{
+    "SSH-Patator": 0,
+    "DoS-Slowhttptest": 1,
+    "DoS-Hulk": 2,
+    "FTP-Patator": 3,
+    "DDoS": 4,
+    "DoS-GoldenEye": 5,
+    "Infiltration": 6,
+    "Web-Attack-XSS": 7,
+    "Heartbleed": 8,
+    "Web-Attack-Brute-Force": 9,
+    "DoS-slowloris": 10,
+    "Benign": 11,
+    "PortScan": 12,
+    "Bot": 13,
+    "Web-Attack-Sql-Injection": 14
+}
