@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 ## Quick Start
 
-### 1. Flow Preprocess
+### 1. Dataset Preprocessing
 
 ```bash
 python preprocess/preprocess_dataset.py --input /Your/Raw/Dataset/Path/CIC-IOT-2023/DDoS/ --feature PLS --output_path route_data/ddos-iot-2023
@@ -78,21 +78,30 @@ TrafficMoE is evaluated on the following public benchmark datasets:
 | ISCX-Botnet datasets  | Various botnet families to conduct attacks with C2 channels |
 | DAPT datasets | Sophisticated multi-stage attacks to form advanced persistent threats |
 
-Preprocessed versions of all datasets used in our experiments are provided in the repository.
+Preprocessed versions of all datasets used in our experiments are provided in `dataset/route_data`.
 
 ### Evasion Attacks
 
+We provide 4 evasion methods to reshape the attack traffic mentioned above, constructing 240 evasion attacks for evaluation. The evasion methods including:
 
+| Evasion Attacks | Description |
+|---------|-------------|
+| FRONT | Attackers inject dummy packets at the front of flows and randomizes the number and distribution of dummy packets |
+| WTF-PAD | Attackers fill up sparse gaps in flows with dummy packets based on the distribution of inter-packet arrival time |
+| DFD | Attackers inject dummy packets within every outgoing burst to break the inherent burst patterns preserved in traffic |
+| TextAttack | attackers utilize the half-byte level of disturbance on raw packet data to generate adversarial samples against pre-trained models |
+
+The scripts of building evasion attacks are shown in `dataset/evasion_attack.py`. Using the following command to generate evasion attack traffic: 
+```bash
+python evasion_attack.py
+```
 
 ### Unknown Attacks
 
 
 ## Repository Structure
 
-```
-TrafficMoE/
-.
-├── README.md
+```bash
 ├── config
 │   └── 7B.yaml
 ├── dataset
@@ -133,6 +142,7 @@ TrafficMoE/
 │   ├── preprocess_dataset.py
 │   ├── preprocess_pretrain_data.py
 │   └── preprocess_utils.py
+├── README.md
 ├── requirements.txt
 ├── train.py
 ├── inference.py
